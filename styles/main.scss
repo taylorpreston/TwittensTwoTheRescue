@@ -1,0 +1,22 @@
+@import 'common_resetCss'; 
+@import 'mixins';
+@import '../bower_components/bourbon/app/assets/stylesheets/bourbon';
+// $visual-grid:true;
+@import '../bower_components/neat/app/assets/stylesheets/neat';
+
+$primary: 	#68b25b;
+$secondary:	#85c07b;
+$black:		#496a44;
+$white:		#ffffff;
+
+html {
+  font-size: 14px;
+}
+body {
+	@include regular();
+  	font-size: 1rem;
+  	text-align: center;
+	@include outer-container(12);
+	margin: 0 auto;
+	width: 1190px;
+}
