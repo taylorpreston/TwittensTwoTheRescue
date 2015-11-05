@@ -1,0 +1,22 @@
+{
+  "name": "Twitter",
+  "version": "0.0.0",
+  "authors": [
+    "Taylor Preston <taylor.preston.music@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "neat": "~1.7.2"
+  }
+}
