@@ -1,0 +1,63 @@
+html {
+  box-sizing: border-box; }
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit; }
+
+* {
+  box-sizing: border-box;
+  font-family: Helvetica; }
+
+main {
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto;
+  background: #EBF4FB; }
+  main::after {
+    clear: both;
+    content: "";
+    display: table; }
+
+section.login, .register {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  margin-left: 25.58941%;
+  background: #55ACEE;
+  color: #292F33;
+  position: relative;
+  text-align: center;
+  padding: 35px 0; }
+  section.login:last-child, .register:last-child {
+    margin-right: 0; }
+  section.login input, .register input {
+    margin-bottom: 25px;
+    padding: 15px 7px;
+    width: 345px;
+    border-radius: 3px;
+    border-style: none; }
+
+section.register {
+  height: 700px; }
+
+section {
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto; }
+  section::after {
+    clear: both;
+    content: "";
+    display: table; }
+  section .loginWrap {
+    display: table;
+    float: left;
+    display: block;
+    margin-right: 4.82916%;
+    width: 65.05695%;
+    margin-left: 17.47153%;
+    height: 500px; }
+    section .loginWrap:last-child {
+      margin-right: 0; }
