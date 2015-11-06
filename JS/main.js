@@ -1,11 +1,12 @@
 // *** Models *** //
-var PublicModel = Backbone.Model.extend({
+var TwitModel = Backbone.Model.extend({
    url: 'https://tiny-starburst.herokuapp.com/collections/chat'
 })
 
 // *** Collections ***
 var PublicCollection = Backbone.Collection.extend({
-   url: 'https://tiny-starburst.herokuapp.com/collections/chat'
+   url: 'https://tiny-starburst.herokuapp.com/collections/chat',
+   model: TwitModel
 });
 
 var FollowingCollection = Backbone.Collection.extend({
@@ -17,12 +18,47 @@ var FollowingCollection = Backbone.Collection.extend({
 var TwitView = Backbone.View.extend({
   className: 'tweet',
   tagName: 'section',
-  template:  _.template($('#TwitTemplate').html()),
+
+   render: function(){
+     console.log("twittins")
+     var html = $('#TwitTemplate').html();
+     this.$el.html(html);
+
+     return this;
+  }
+});
+
+var ItemView = Backbone.View.extend({
+  className: "entry",
+  tagName: 'article',
+
+  template: _.template($('#timelineTemplate').html()),
 
   render: function(){
-    console.log("twittins")
-    this.$el.html(template);
+    var data = this.model.toJSON();
+    this.$el.html(this.template(data));
+
     return this;
+  }
+});
+
+var TwitContainer = Backbone.View.extend({
+  tagName: 'div',
+
+  initialize: function(){
+    this.listenTo(this.collection, 'fetch sync', this.render);
+  },
+
+  render: function(){
+    var view = this;
+
+    this.collection.each(function(model){
+      var item = new TwitView({
+        model: model
+      });
+      item.render();
+      view.$el.append(item.el);
+    });
   }
 });
 
@@ -149,9 +185,5 @@ var TwitRouter = Backbone.Router.extend({
   },
   });
 
-publicTwits = new PublicCollection
-console.log(publicTwits)
-
 twiterRoute = new TwitRouter;
-
 Backbone.history.start();
