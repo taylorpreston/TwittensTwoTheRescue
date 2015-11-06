@@ -27,6 +27,17 @@ var LoginView = Backbone.View.extend({
 });
 
 var RegisterView = Backbone.View.extend({
+  className: 'page register',
+  tagName: 'section',
+  // initialize: function(options){
+  //   console.log(options)
+  //   this.className = options.className;
+  //   this.template = options.template;
+  // },
+  render: function(){
+    this.$el.html(this.template());
+    return this;
+  }
 });
 
 var ProfileView = Backbone.View.extend({
