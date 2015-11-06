@@ -19,45 +19,60 @@
       <h1></h1>
     </main>
 
+  <script type="text/template" id="TwitTemplate">
+    <div class="tweetWrap">
+      <img src="" alt="twitpic" />
+      <h1><%= name %></h1>
+      <p>
+      <%= message %>
+      </p>
+      <input type="button" name="postButton" value="Post">
+    </div>
+  </script>
 
   </body>
+
   <script type="text/template" id="timelineTemplate">
     <h1>TIMELINE</h1>
-    <input type="button" name="name" value="click me">
   </script>
+
   <script type="text/template" id="loginTemplate">
     <h1>Login</h1>
     <div class="loginWrap">
       <input type="text" name="name" value="" placeholder="E-Mail...">
-      <input type="text" name="name" value="" placeholder="Password:">
-      <input type="text" name="name" value="" placeholder="Conf. Password:">
+      <input type="password" name="name" value="" placeholder="Password:" display="none">
+      <input type="password" name="name" value="" placeholder="Conf. Password:">
       <input type="button" name="loginButton" value="Login">
       <span>Or...<a href="#register">Register Here</a></span>
     </div>
   </script>
+
   <script type="text/template" id="registerTemplate">
     <h1>Register for twittar.</h1>
+    <div class="registerWrap">
       <input type="text" name="name" value="" placeholder="E-Mail...">
       <input type="text" name="name" value="" placeholder="Password:">
       <input type="text" name="name" value="" placeholder="Conf. Password:">
-    <input type="button" name="name" value="Join">
+      <input type="button" name="name" value="Join">
     <span>Or...<a href="#login">Login Here</a></span>
+  </div>
   </script>
+
   <script type="text/template" id="dashboardTempalte">
     <h1>DASHBOARD</h1>
       <input type="button" name="name" value="click me">
   </script>
+
   <script type="text/template" id="profileTemplate">
-    <h1>PROFILE</h1>
-      <img src="https://www.placecage.com/g/140/100" alt="placeholderImg" />
-      <a href="#">@UserHandle</a>
-      <span>Location:<a href="#"></a></span>
-    <input type="button" name="name" value="click me">
+    <img src="" alt="twitpic" />
+    <h1><%= name %></h1>
   </script>
+
   <script type="text/template" id="usersTemplate">
     <h1>USERS</h1>
     <input type="button" name="name" value="click me">
   </script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" ></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js" ></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js" ></script>

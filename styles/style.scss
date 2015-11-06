@@ -1,5 +1,5 @@
 @import "../bower_components/bourbon/app/assets/stylesheets/bourbon";
-// $visual-grid: true;
+$visual-grid: true;
 @import "../bower_components/neat/app/assets/stylesheets/neat";
 
 
@@ -15,6 +15,13 @@ main {
   background: #EBF4FB;
 }
 
+//header//
+header {
+  height: 50px;
+  background: #fff;
+}
+
+//begin login/register//
 section.login, .register{
   @include span-columns(6);
   @include shift(3);
@@ -32,17 +39,13 @@ section.login, .register{
   }
 }
 
-section.register {
-  height: 700px;
-}
-
-
 section {
   @include outer-container;
-  .loginWrap {
+  .loginWrap, .registerWrap {
     display: table;
     @include span-columns(4 of 6);
     @include shift(1);
     height: 500px;
   }
 }
+//end login/register

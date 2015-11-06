@@ -1,6 +1,11 @@
+// *** Models *** //
+var PublicModel = Backbone.Model.extend({
+   url: 'https://tiny-starburst.herokuapp.com/collections/chat'
+})
 
 // *** Collections ***
 var PublicCollection = Backbone.Collection.extend({
+   url: 'https://tiny-starburst.herokuapp.com/collections/chat'
 });
 
 var FollowingCollection = Backbone.Collection.extend({
@@ -9,7 +14,21 @@ var FollowingCollection = Backbone.Collection.extend({
 
 
 // *** VIEWS ***
+var TwitView = Backbone.View.extend({
+  className: 'tweet',
+  tagName: 'section',
+  template:  _.template($('#TwitTemplate').html()),
+
+  render: function(){
+    console.log("twittins")
+    this.$el.html(template);
+    return this;
+  }
+});
+
 var TimelineView = Backbone.View.extend({
+  className: 'page timeline',
+  tagName:   'section',
 
   events: {
     'click input': 'handleClick'
@@ -29,7 +48,7 @@ var TimelineView = Backbone.View.extend({
 
 var LoginView = Backbone.View.extend({
   className: 'page login',
-  tagName: 'section',
+  tagName:   'section',
 
   events: {
     'click input': 'handleClick'
@@ -49,7 +68,7 @@ var LoginView = Backbone.View.extend({
 
 var RegisterView = Backbone.View.extend({
   className: 'page register',
-  tagName: 'section',
+  tagName:   'section',
 
   events: {
     'click input': 'handleClick'
@@ -68,6 +87,8 @@ var RegisterView = Backbone.View.extend({
 });
 
 var ProfileView = Backbone.View.extend({
+  className: 'page profile',
+  tagName:   'section',
 
   events: {
     'click input': 'handleClick'
@@ -98,7 +119,7 @@ var TwitRouter = Backbone.Router.extend({
   },
   HomeRoute:  function(){
     $('main').html('');
-    view = new TimelineView
+    view = new TimelineView,
     $('main').append(view.render().el);
   },
   LoginRoute: function(){
@@ -113,7 +134,7 @@ var TwitRouter = Backbone.Router.extend({
   },
   DashboardRoute  : function(){
     $('main').html('');
-    view = new TimelineView
+    view = new TimelineView,
     $('main').append(view.render().el);
   },
   ProfileRoute  : function(){
@@ -128,6 +149,9 @@ var TwitRouter = Backbone.Router.extend({
   },
   });
 
-twiterRoute = new TwitRouter
+publicTwits = new PublicCollection
+console.log(publicTwits)
+
+twiterRoute = new TwitRouter;
 
 Backbone.history.start();
