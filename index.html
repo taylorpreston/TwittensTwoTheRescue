@@ -32,6 +32,13 @@
   <script type="text/template" id="timelineTemplate">
     <h1>TIMELINE</h1>
     <input type="button" name="name" value="click me">
+
+    <% _.forEach(tweets, function(tweet){ %>
+      <div class="tweet">
+        <h2><%= tweet.user.email %></h2>
+        <p><%= tweet.body %></p>
+      </div>
+    <% }) %>
   </script>
   <script type="text/template" id="loginTemplate">
     <h1>LOGIN</h1>
@@ -52,6 +59,13 @@
   <script type="text/template" id="usersTemplate">
     <h1>USERS</h1>
     <input type="button" name="name" value="click me">
+  </script>
+
+  <script type="text/template" id="homeTemplate">
+    <h2>Home Page</h2>
+
+    <section class="timeline"></section>
+
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" ></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js" ></script>
