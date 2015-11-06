@@ -1,6 +1,11 @@
+// *** Models ***
+var PublicModel = Backbone.Model.extend({
+   url: 'https://tiny-starburst.herokuapp.com/collections/chat'
+})
 
 // *** Collections ***
 var PublicCollection = Backbone.Collection.extend({
+   url: 'https://tiny-starburst.herokuapp.com/collections/chat'
 });
 
 var FollowingCollection = Backbone.Collection.extend({
@@ -9,6 +14,19 @@ var FollowingCollection = Backbone.Collection.extend({
 
 
 // *** VIEWS ***
+var TwitView = Backbone.View.extend({
+
+  className: 'tweet',
+  tagName: 'section',
+  template:  _.template($('#TwitTemplate').html()),
+
+  render: function(){
+    console.log("twittins")
+    this.$el.html(template);
+    return this;
+  }
+})
+
 var TimelineView = Backbone.View.extend({
 
   events: {
@@ -125,6 +143,9 @@ var TwitRouter = Backbone.Router.extend({
     $('main').append(view.render().el);
   },
   });
+
+publicTwits = new PublicCollection
+console.log(publicTwits)
 
 twiterRoute = new TwitRouter
 
