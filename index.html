@@ -3,19 +3,27 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href='styles/main.css' media="screen">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,700' type='text/css'>
     <title></title>
   </head>
   <body>
     <header>
-      <a href="#">Home</a>
-      <a href="#login">Login</a>
-      <a href="#register">Register</a>
-      <a href="#dashboard">Dashboard</a>
-      <a href="#profile">Profile</a>
-      <a href="#users">Users</a>
+      <div class="inner">
+        <nav>
+          <ul>
+            <li><a href="#"><span class="icon-home"></span>Home</a></li>
+            <li><a href="#login"><span class="icon-login"></span>Login</a></li>
+            <li><a href="#register"><span class="icon-register"></span>Register</a></li>
+            <li><a href="#dashboard"><span class="icon-dashboard"></span>Dashboard</a></li>
+            <li><a href="#profile"><span class="icon-profile"></span>Profile</a></li>
+            <li><a href="#users"><span class="icon-users"></span>Users</a></li>
+          </ul>
+        </nav>
+      </div><!--inner-->
     </header>
 
-    <main>
+    <main class="inner">
+
 
     </main>
 
@@ -57,4 +65,54 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js" ></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js" ></script>
   <script src="js/main.js"></script>
+
+<script>
+
+$(function(){
+  $('nav ul > li > a').click(function(){
+    $('nav ul > li').removeClass('selected');
+    $(this).closest('li').addClass('selected');
+  });
+});
+
+  $(window).load(function() {
+
+    var $el, leftPos, tabSelected,
+            $tabsNav = $("nav ul");
+
+        if ($tabsNav.length > 0) {
+            var width = $('nav ul').width();
+            $tabsNav.css('width', width + 'px');
+
+            if(!tabSelected) {
+                var tabSelected = $('nav ul li:first-child');
+                tabSelected.addClass('selected');
+            }
+            if($('nav ul li#line').length == 0) {
+                $tabsNav.append("<li id='line'></li>");
+            }
+
+            $("nav ul #line").css({
+                left: tabSelected.position().left,
+                width: tabSelected.width()
+            }).data("origLeft", $("#line").position().left);
+       
+            $("nav ul li").hover(function () {
+                $el = $(this);
+                width = $el.width();
+                $("ulnav ul li#line").css("width", width);
+                leftPos = $el.position().left;
+                $("ulnav ul li#line").css("left", leftPos);
+
+            }, function () {
+                $("nav ul li#line").css({
+                    left: $(".selected").position().left,
+                    width: $(".selected").width()
+                });
+            });
+
+        }
+   });
+</script>
+
 </html>

@@ -124,6 +124,9 @@ svg:not(:root) { overflow: hidden; }
 .clearfix:after { clear: both; }
 .clearfix { *zoom: 1; }
 
+body {
+	box-sizing: border-box;
+}
 
 /* ==|== print styles =======================================================
    Print styles.

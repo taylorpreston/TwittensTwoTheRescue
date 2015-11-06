@@ -1,15 +1,10 @@
-@mixin transition() {
+@mixin transition(){
     -webkit-transition: all 400ms ease;
     -moz-transition: all 400ms ease;
     -o-transition: all 400ms ease;
     -ms-transition: all 400ms ease;
     transition: all 400ms ease;
 }
-
-@mixin border {
-	border: .5px solid rgba(255, 255, 255, .8);
-}
-
 
 @mixin regular {
 	font-family: 'Open Sans', sans-serif;
@@ -22,4 +17,13 @@
 @mixin heavy {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 800;
+}
+
+@mixin calc($property, $expression) { 
+  #{$property}: -webkit-calc(#{$expression}); 
+  #{$property}: calc(#{$expression}); 
+} 
+
+@mixin border {
+	border: .5px solid rgba(136, 153, 166, .8);
 }
