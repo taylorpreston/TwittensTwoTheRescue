@@ -174,14 +174,44 @@ h1 {
 	}
 }
 
+.tweetNow {
+	background-color: #e5f2f7;
+	border-bottom: .5px solid rgba(136, 153, 166, .4);
+	padding: 15px;
+	textarea {
+		width: 100%;
+		resize: none;
+		@include border();
+		@include border-radius(5px);
+		height: 34px;
+		@include transition();
+		padding: 8px;
+		margin-bottom: 10px;
+		&:focus {
+			height: 80px;
+		}
+	}
+	input {
+		@include border();
+		@include border-radius(5px);
+		height: 34px;
+		padding: 10px;
+		margin-right: 2%;
+		width: 70%;
+	}
+	button {
+		width: 27%;
+	}
+}
+
 
 button[type="submit"] {
 	background-color: $primary;
 	@include border();
 	@include border-radius(5px);
 	color: $white;
-	padding: 5px 13px 7px 14px;
-	font-size: 1em;
+	padding: 5px 10px 7px 11px;
+	font-size: .8em;
 	@include bold();
 	@include transition();
 	&:hover {
