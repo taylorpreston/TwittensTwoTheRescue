@@ -27,7 +27,7 @@ $(function(){
                 width: tabSelected.width()
             }).data("origLeft", $("#line").position().left);
 
-            $("nav ul li").hover(function () {
+            $("nav ul li").click(function () {
                 $el = $(this);
                 width = $el.width();
                 $("ulnav ul li#line").css("width", width);
@@ -36,10 +36,9 @@ $(function(){
 
             }, function () {
                 $("nav ul li#line").css({
-                    left: $(".selected").position().left,
-                    width: $(".selected").width()
-                });
+                left: $(".selected").position().left,
+                width: $(".selected").width()
+              });
             });
-
         }
    });

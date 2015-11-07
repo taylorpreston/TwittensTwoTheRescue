@@ -29,22 +29,13 @@
 
     </main>
 
-
   </body>
 
-  <!-- <script type="text/template" id="TwitTemplate">
-    <div class="tweetWrap">
-      <header> <%= name %>
-        <time><%= created %></time>
-      </header>
-      <p><%= message %></p>
-      <input type="button" name="postButton" value="Post">
-    </div>
-<! YO! I (lindsey) changed the input on line 41 to a button because I needed a non self-closing element so I could use the icon span. I'd like to change the others too, holler if that's a problem! -->
 
   <script type="text/template" id="twitTemplate">
-    <h2><%= name %></h2>
+    <h2><a href"#user"><%= name %></a></h2>
     <p><%= message %></p>
+    <time><%= created %></time>
   </script>
 
 
@@ -56,7 +47,8 @@
     </div>
     <% _.forEach(tweets, function(tweet){ %>
       <div class="tweet">
-        <h2><%= tweet.user.email %></h2>
+        <h2><a href=""><%= tweet.user.email %></a></h2>
+        <time>Updated: <%= tweet.created_at %></time>
         <p><%= tweet.body %></p>
       </div>
     <% }) %>
@@ -83,9 +75,10 @@
     <span>Or...<a href="#login">Login Here</a></span>
   </div>
 
-  <script type="text/template" id="dashboardTempalte">
+  <script type="text/template" id="dashboardTemplate">
     <h1>DASHBOARD</h1>
       <input type="button" name="name" value="click me">
+      <section class="timeline">HEY GUYS</section>
   </script>
 
   <script type="text/template" id="profileTemplate">
@@ -97,25 +90,7 @@
 
   </script>
 
-  <script type="text/template" id="registerTemplate">
-    <h2>REGISTER</h2>
-    <input type="button" name="name" value="click me">
-  </script>
-
-  <script type="text/template" id="dashboardTempalte">
-    <h2>DASHBOARD</h2>
-    <input type="button" name="name" value="click me">
-  </script>
-
-  <script type="text/template" id="profileTemplate">
-    <h2>PROFILE</h2>
-    <input type="button" name="name" value="click me">
-
-    <section class="timeline"></section>
-
-  </script>
-
-  <script type="text/template" id="usersTemplate">
+-  <script type="text/template" id="usersTemplate">
     <h2>USERS</h2>
     <input type="button" name="name" value="click me">
   </script>
@@ -129,6 +104,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" ></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js" ></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js" ></script>
+  <script src="node_modules/moment/min/moment.min.js"></script>
   <script src="js/main.js"></script>
   <script src="js/magic-line.js"></script>
 </html>
