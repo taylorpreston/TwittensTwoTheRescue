@@ -1,8 +1,68 @@
-@import 'common_resetCss'; 
+
+
+section.login, .register {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  margin-left: 25.58941%;
+  background: #55ACEE;
+  color: #292F33;
+  position: relative;
+  text-align: center;
+  padding: 35px 0; }
+  section.login:last-child, .register:last-child {
+    margin-right: 0; }
+  section.login input, .register input {
+    margin-bottom: 25px;
+    padding: 15px 7px;
+    width: 345px;
+    border-radius: 3px;
+    border-style: none;
+}
+
+.register {
+  background: #4FC29F;
+  h1, span, a {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
+.login {
+  h1, span, a {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
+section {
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto; }
+  section::after {
+    clear: both;
+    content: "";
+    display: table; }
+  section .loginWrap, section .registerWrap {
+    display: table;
+    float: left;
+    display: block;
+    margin-right: 4.82916%;
+    width: 65.05695%;
+    margin-left: 17.47153%;
+    height: 500px; }
+    section .loginWrap:last-child, section .registerWrap:last-child {
+      margin-right: 0; }
+
+/// END OF DANIEL'S SHITTY STYLING ///
+@import 'common_resetCss';
 @import 'mixins';
 @import 'fonts';
 @import '../bower_components/bourbon/app/assets/stylesheets/bourbon';
-$visual-grid:true;
+// $visual-grid:true;
 @import '../bower_components/neat/app/assets/stylesheets/neat';
 
 $primary: 	#0084b4;
@@ -21,7 +81,7 @@ body {
 
 header {
 	padding: 13px 0;
-	border-bottom: .5px solid rgba(136, 153, 166, .8);
+	border-bottom: .5px solid rgba(136, 153, 166, .4);
 	height: 40px;
 	margin-bottom: 10px;
 	.inner {
@@ -32,7 +92,7 @@ header {
 .inner {
 	@include outer-container(12);
 	margin: 0 auto;
-	max-width: 1190px;
+	max-width: 600px;
 	width: 80%;
 }
 
@@ -40,7 +100,8 @@ nav ul {
 	width: 100%;
 	position: absolute;
 	right: 0;
-	text-align: right;
+	text-align: center;
+	margin-left: 15px;
 	li {
 		display: inline-block;
 		padding: 0 1%;
@@ -50,6 +111,7 @@ nav ul {
 			text-decoration: none;
 			position: relative;
 			padding: 4px 0 0 30px;
+			@include transition();
 			span {
 				font-size: 2em;
 				position: absolute;
@@ -58,7 +120,6 @@ nav ul {
 			}
 			&:hover {
 				color: $primary;
-				@include transition();
 			}
 		}
 		&#line {
@@ -81,17 +142,85 @@ nav ul {
 	}
 }
 
+h1 {
+	font-size: 3em;
+	text-transform: uppercase;
+	color: $primary;
+	letter-spacing: 3px;
+	text-align: center;
+}
+
+.homePage {
+	.timeline {
+		background-color: $white;
+		margin-top: 15px;
+		@include border-radius(5px);
+		@include border();
+		.tweet {
+			padding: 15px;
+			border-bottom: .5px solid rgba(136, 153, 166, .4);
+			h2 {
+				@include bold();
+				line-height: 20px;
+			}
+			p {
+				line-height: 18px;
+				a {
+					color: $primary;
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}
+
+.tweetNow {
+	background-color: #e5f2f7;
+	border-bottom: .5px solid rgba(136, 153, 166, .4);
+	padding: 15px;
+	textarea {
+		width: 100%;
+		resize: none;
+		@include border();
+		@include border-radius(5px);
+		height: 34px;
+		@include transition();
+		padding: 8px;
+		margin-bottom: 10px;
+		&:focus {
+			height: 80px;
+		}
+	}
+	input {
+		@include border();
+		@include border-radius(5px);
+		height: 34px;
+		padding: 10px;
+		margin-right: 2%;
+		width: 70%;
+	}
+	button {
+		width: 27%;
+	}
+}
 
 
-
-
-
-
-
-
-
-
-
-
+button[type="submit"] {
+	background-color: $primary;
+	@include border();
+	@include border-radius(5px);
+	color: $white;
+	padding: 5px 10px 7px 11px;
+	font-size: .8em;
+	@include bold();
+	@include transition();
+	&:hover {
+		@include gradient();
+	}
+	span {
+		padding-right: 10px;
+		font-size: 1.4em;
+	}
+}
 
 @import 'responsive';

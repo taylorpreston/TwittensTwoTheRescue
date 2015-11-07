@@ -2,6 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon" href="img/apple-touch-57.png">
     <link rel="stylesheet" href='styles/main.css' media="screen">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,700' type='text/css'>
     <title></title>
@@ -23,18 +25,35 @@
     </header>
 
     <main class="inner">
-
+    <h1></h1>
 
     </main>
 
 
-
   </body>
 
-  <script type="text/template" id="timelineTemplate">
-    <h1>TIMELINE</h1>
-    <input type="button" name="name" value="click me">
+  <!-- <script type="text/template" id="TwitTemplate">
+    <div class="tweetWrap">
+      <header> <%= name %>
+        <time><%= created %></time>
+      </header>
+      <p><%= message %></p>
+      <input type="button" name="postButton" value="Post">
+    </div>
+<! YO! I (lindsey) changed the input on line 41 to a button because I needed a non self-closing element so I could use the icon span. I'd like to change the others too, holler if that's a problem! -->
 
+  <script type="text/template" id="twitTemplate">
+    <h2><%= name %></h2>
+    <p><%= message %></p>
+  </script>
+
+
+  <script type="text/template" id="timelineTemplate">
+    <div class="tweetNow">
+      <textarea type="text" class="msg" placeholder="Message"/></textarea>
+      <input type="text" class="name" placeholder="Username..."/>
+      <button type="submit" name="name"><span class="icon-pen"></span>Send Tweet</button>
+    </div>
     <% _.forEach(tweets, function(tweet){ %>
       <div class="tweet">
         <h2><%= tweet.user.email %></h2>
@@ -42,44 +61,74 @@
       </div>
     <% }) %>
   </script>
+
   <script type="text/template" id="loginTemplate">
-    <h1>LOGIN</h1>
-    <input type="text" name="name" value="" placeholder="username">
+    <h1>Login</h1>
+    <div class="loginWrap">
+      <input type="text" name="name" value="" placeholder="E-Mail...">
+      <input type="password" name="name" value="" placeholder="Password:" display="none">
+      <input type="password" name="name" value="" placeholder="Conf. Password:">
+      <input type="button" name="loginButton" value="Login">
+      <span>Or...<a href="#register">Register Here</a></span>
+    </div>
   </script>
+
   <script type="text/template" id="registerTemplate">
-    <h1>REGISTER</h1>
-    <input type="button" name="name" value="click me">
-  </script>
+    <h1>Register for twittar.</h1>
+    <div class="registerWrap">
+      <input type="text" name="name" value="" placeholder="E-Mail...">
+      <input type="text" name="name" value="" placeholder="Password:">
+      <input type="text" name="name" value="" placeholder="Conf. Password:">
+      <input type="button" name="name" value="Join">
+    <span>Or...<a href="#login">Login Here</a></span>
+  </div>
+
   <script type="text/template" id="dashboardTempalte">
     <h1>DASHBOARD</h1>
+      <input type="button" name="name" value="click me">
+  </script>
+
+  <script type="text/template" id="profileTemplate">
+    <img src="" alt="twitpic" />
+    <h1><%= name %></h1>
+    <h2>LOGIN</h2>
+    <input type="text" name="name" value="" placeholder="username">
+    <section class="timeline"></section>
+
+  </script>
+
+  <script type="text/template" id="registerTemplate">
+    <h2>REGISTER</h2>
     <input type="button" name="name" value="click me">
   </script>
+
+  <script type="text/template" id="dashboardTempalte">
+    <h2>DASHBOARD</h2>
+    <input type="button" name="name" value="click me">
+  </script>
+
   <script type="text/template" id="profileTemplate">
-    <h1>PROFILE</h1>
+    <h2>PROFILE</h2>
     <input type="button" name="name" value="click me">
 
     <section class="timeline"></section>
 
   </script>
+
   <script type="text/template" id="usersTemplate">
-    <h1>USERS</h1>
+    <h2>USERS</h2>
     <input type="button" name="name" value="click me">
   </script>
+
 
   <script type="text/template" id="homeTemplate">
-    <h2>Home Page</h2>
-
+    <h1>Twittar</h1>
     <section class="timeline"></section>
-
   </script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" ></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js" ></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js" ></script>
   <script src="js/main.js"></script>
   <script src="js/magic-line.js"></script>
-<!--
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> a05914f602e6f6cc1690d5a4be69fbc8071f8b07 -->

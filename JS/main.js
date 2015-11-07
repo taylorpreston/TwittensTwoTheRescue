@@ -1,12 +1,11 @@
 // *** Models ***
 var TwitModel = Backbone.Model.extend({
-   url: 'https://tiny-starburst.herokuapp.com/collections/chat',
+   url: 'https://twitter-clone-api.herokuapp.com/tweets'
 
 });
 
 // *** Collections ***
 var PublicCollection = Backbone.Collection.extend({
-  model: TwitModel,
   url: 'https://twitter-clone-api.herokuapp.com/tweets'
 });
 
@@ -14,20 +13,54 @@ var FollowingCollection = Backbone.Collection.extend({
 });
 
 
-
 // *** VIEWS ***
-// var TwitView = Backbone.View.extend({
-//
-//   className: 'tweet',
-//   tagName: 'section',
-//   template:  _.template($('#TwitTemplate').html()),
-//
-//   render: function(){
-//     console.log("twittins")
-//     this.$el.html(template);
-//     return this;
-//   }
-// })
+
+var TwitView = Backbone.View.extend({
+
+  className: 'tweet',
+  tagName: 'section',
+  template:  _.template($('#TwitTemplate').html()),
+
+  render: function(){
+    console.log("twittins")
+    this.$el.html(template);
+    return this;
+  }
+})
+
+var TwitView = Backbone.View.extend({
+  className: 'tweet',
+  tagName: 'section',
+
+   render: function(){
+     console.log("twittins")
+     var html = $('#TwitTemplate').html();
+     this.$el.html(html);
+
+     return this;
+  }
+});
+
+var ItemView = Backbone.View.extend({
+  className: "entry",
+  tagName: 'article',
+
+  template: _.template($('#timelineTemplate').html()),
+
+  render: function(){
+    var data = this.model.toJSON();
+    this.$el.html(this.template(data));
+
+    return this;
+  }
+});
+
+var TimelineView = Backbone.View.extend({
+  className: 'page timeline',
+  tagName:   'section',
+
+})
+
 var HomeView = Backbone.View.extend({
     className: "homePage",
     template: _.template($('#homeTemplate').html()),
@@ -48,12 +81,12 @@ var HomeView = Backbone.View.extend({
 var ProfileView = Backbone.View.extend({
   className: "profilePage",
   template: _.template($('#profileTemplate').html()),
-  // events: {
-  //   'click input': 'handleClick'
-  // },
-  // handleClick: function(){
-  //   console.log("clicked on Profile")
-  // },
+  events: {
+    'click input': 'handleClick'
+  },
+  handleClick: function(){
+    console.log("clicked on Profile")
+  },
   initialize: function() {
     this.timeline = new TimelineView({
       collection: new PublicCollection()
@@ -110,6 +143,8 @@ var LoginView = Backbone.View.extend({
 });
 
 var RegisterView = Backbone.View.extend({
+  className: 'page register',
+  tagName:   'section',
 
   events: {
     'click input': 'handleClick'
@@ -122,6 +157,27 @@ var RegisterView = Backbone.View.extend({
   render: function(){
     console.log("rendered")
     var template = _.template($('#registerTemplate').html());
+    this.$el.html(template);
+    return this;
+  }
+});
+
+
+var ProfileView = Backbone.View.extend({
+  className: 'page profile',
+  tagName:   'section',
+
+  events: {
+    'click input': 'handleClick'
+  },
+
+  handleClick: function(){
+    console.log("clicked on Profile")
+  },
+
+  render: function(){
+    console.log("rendered")
+    var template = _.template($('#profileTemplate').html());
     this.$el.html(template);
     return this;
   }
@@ -155,22 +211,22 @@ var TwitRouter = Backbone.Router.extend({
   },
   DashboardRoute  : function(){
     $('main').html('');
-    view = new TimelineView()
+    view = new DashboardView(),
     $('main').append(view.render().el);
   },
   ProfileRoute  : function(){
     $('main').html('');
-    view = new TimelineView()
+    var view = new ProfileView()
     $('main').append(view.render().el);
   },
   UsersRoute  : function(){
     $('main').html('');
-    view = new TimelineView()
+    view = new UserView()
     $('main').append(view.render().el);
   }
 });
 
-
+twiterRoute = new TwitRouter;
 
 var twiterRouter = new TwitRouter();
 Backbone.history.start();
