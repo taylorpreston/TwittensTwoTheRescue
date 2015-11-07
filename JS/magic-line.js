@@ -26,7 +26,7 @@ $(function(){
                 left: tabSelected.position().left,
                 width: tabSelected.width()
             }).data("origLeft", $("#line").position().left);
-       
+
             $("nav ul li").hover(function () {
                 $el = $(this);
                 width = $el.width();
