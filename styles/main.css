@@ -435,25 +435,25 @@ button[type="submit"], .btn {
     padding-right: 10px;
     font-size: 1.4em; }
 
-.loginWrap {
+.loginWrap, .registerWrap {
   background-color: #ffffff;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
   border: 0.5px solid rgba(136, 153, 166, 0.4);
   padding: 50px 25%; }
-  .loginWrap input {
+  .loginWrap input, .registerWrap input {
     margin-bottom: 10px; }
-  .loginWrap p {
+  .loginWrap p, .registerWrap p {
     text-align: center;
     margin-top: 10px; }
-  .loginWrap button, .loginWrap .btn {
+  .loginWrap button, .loginWrap .btn, .registerWrap button, .registerWrap .btn {
     display: block;
     width: 100%;
     margin-top: 10px;
     text-align: center;
     padding-right: 40px; }
-  .loginWrap .btn {
+  .loginWrap .btn, .registerWrap .btn {
     padding-bottom: 11px; }
 
 @media screen and (max-width: 1200px) {

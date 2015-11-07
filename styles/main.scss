@@ -174,7 +174,7 @@ button[type="submit"], .btn {
 	}
 }
 
-.loginWrap {
+.loginWrap, .registerWrap {
 	@include mainBg();
 	padding: 50px 25%;
 	input {
