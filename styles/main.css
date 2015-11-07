@@ -1,59 +1,3 @@
-section.login, .register {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 48.82117%;
-  margin-left: 25.58941%;
-  background: #55ACEE;
-  color: #292F33;
-  position: relative;
-  text-align: center;
-  padding: 35px 0; }
-
-section.login:last-child, .register:last-child {
-  margin-right: 0; }
-
-section.login input, .register input {
-  margin-bottom: 25px;
-  padding: 15px 7px;
-  width: 145px;
-  border-radius: 3px;
-  border-style: none; }
-
-.register {
-  background: #4FC29F; }
-  .register h1, .register span, .register a {
-    font-size: 20px;
-    text-align: center;
-    margin-bottom: 20px; }
-
-.login h1, .login span, .login a {
-  font-size: 20px;
-  text-align: center;
-  margin-bottom: 20px; }
-
-section {
-  max-width: 68em;
-  margin-left: auto;
-  margin-right: auto; }
-
-section::after {
-  clear: both;
-  content: "";
-  display: table; }
-
-section .loginWrap, section .registerWrap {
-  display: table;
-  float: left;
-  display: block;
-  margin-right: 4.82916%;
-  width: 65.05695%;
-  margin-left: 17.47153%;
-  height: 500px; }
-
-section .loginWrap:last-child, section .registerWrap:last-child {
-  margin-right: 0; }
-
 /* Eric Meyer's reset
 	http://meyerweb.com/eric/tools/css/reset/ 
 	v2.0b1 | 201101 
@@ -399,25 +343,28 @@ h1 {
   text-transform: uppercase;
   color: #0084b4;
   letter-spacing: 3px;
-  text-align: center; }
+  text-align: center;
+  margin-bottom: 15px; }
 
-.homePage .timeline {
+.timeline {
   background-color: #ffffff;
-  margin-top: 15px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
   border: 0.5px solid rgba(136, 153, 166, 0.4); }
-  .homePage .timeline .tweet {
+  .timeline .tweet {
     padding: 15px;
     border-bottom: 0.5px solid rgba(136, 153, 166, 0.4); }
-    .homePage .timeline .tweet h2 {
+    .timeline .tweet h2 {
       font-family: 'Open Sans', sans-serif;
       font-weight: 700;
       line-height: 20px; }
-    .homePage .timeline .tweet p {
+      .timeline .tweet h2 a {
+        color: #0084b4;
+        text-decoration: none; }
+    .timeline .tweet p {
       line-height: 18px; }
-      .homePage .timeline .tweet p a {
+      .timeline .tweet p a {
         color: #0084b4;
         text-decoration: none; }
 
@@ -436,23 +383,33 @@ h1 {
     -webkit-transition: all 0.15s ease-out 0s;
     -moz-transition: all 0.15s ease-out 0s;
     transition: all 0.15s ease-out 0s;
-    padding: 8px;
-    margin-bottom: 10px; }
+    padding: 8px 8px 0 8px;
+    margin-bottom: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: .9em; }
     .tweetNow textarea:focus {
-      height: 80px; }
+      height: 80px;
+      border-color: #0084b4; }
   .tweetNow input {
-    border: 0.5px solid rgba(136, 153, 166, 0.4);
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    height: 34px;
-    padding: 10px;
-    margin-right: 2%;
     width: 70%; }
   .tweetNow button {
     width: 27%; }
 
-button[type="submit"] {
+input {
+  border: 0.5px solid rgba(136, 153, 166, 0.4);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  height: 34px;
+  padding: 0 10px;
+  margin-right: 2%;
+  width: 100%;
+  font-size: .9em; }
+  input:focus {
+    border-color: #0084b4; }
+
+button[type="submit"], .btn {
   background-color: #0084b4;
   border: 0.5px solid rgba(136, 153, 166, 0.4);
   -webkit-border-radius: 5px;
@@ -461,21 +418,43 @@ button[type="submit"] {
   color: #ffffff;
   padding: 5px 10px 7px 11px;
   font-size: .8em;
+  text-decoration: none;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   -webkit-transition: all 0.15s ease-out 0s;
   -moz-transition: all 0.15s ease-out 0s;
   transition: all 0.15s ease-out 0s; }
-  button[type="submit"]:hover {
+  button[type="submit"]:hover, .btn:hover {
     background-color: #0083b3;
     background-image: -webkit-linear-gradient(top, #0083b3, #007099);
     background-image: -moz-linear-gradient(top, #0083b3, #007099);
     background-image: -o-linear-gradient(top, #0083b3, #007099);
     background-image: -ms-linear-gradient(top, #0083b3, #007099);
     background-image: linear-gradient(top, #0083b3, #007099); }
-  button[type="submit"] span {
+  button[type="submit"] span, .btn span {
     padding-right: 10px;
     font-size: 1.4em; }
+
+.loginWrap {
+  background-color: #ffffff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 0.5px solid rgba(136, 153, 166, 0.4);
+  padding: 50px 25%; }
+  .loginWrap input {
+    margin-bottom: 10px; }
+  .loginWrap p {
+    text-align: center;
+    margin-top: 10px; }
+  .loginWrap button, .loginWrap .btn {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+    padding-right: 40px; }
+  .loginWrap .btn {
+    padding-bottom: 11px; }
 
 @media screen and (max-width: 1200px) {
   html {
