@@ -16,18 +16,18 @@ var FollowingCollection = Backbone.Collection.extend({
 
 
 // *** VIEWS ***
-var TwitView = Backbone.View.extend({
-
-  className: 'tweet',
-  tagName: 'section',
-  template:  _.template($('#TwitTemplate').html()),
-
-  render: function(){
-    console.log("twittins")
-    this.$el.html(template);
-    return this;
-  }
-})
+// var TwitView = Backbone.View.extend({
+//
+//   className: 'tweet',
+//   tagName: 'section',
+//   template:  _.template($('#TwitTemplate').html()),
+//
+//   render: function(){
+//     console.log("twittins")
+//     this.$el.html(template);
+//     return this;
+//   }
+// })
 var HomeView = Backbone.View.extend({
     className: "homePage",
     template: _.template($('#homeTemplate').html()),
@@ -35,7 +35,6 @@ var HomeView = Backbone.View.extend({
       this.timeline = new TimelineView({
         collection: new PublicCollection()
       });
-
       this.timeline.collection.fetch();
     },
     render() {
@@ -44,6 +43,29 @@ var HomeView = Backbone.View.extend({
 
       return this;
     }
+});
+
+var ProfileView = Backbone.View.extend({
+  className: "profilePage",
+  template: _.template($('#profileTemplate').html()),
+  // events: {
+  //   'click input': 'handleClick'
+  // },
+  // handleClick: function(){
+  //   console.log("clicked on Profile")
+  // },
+  initialize: function() {
+    this.timeline = new TimelineView({
+      collection: new PublicCollection()
+    });
+    this.timeline.collection.fetch();
+  },
+  render() {
+    this.$el.html(this.template());
+    this.$('.timeline').html(this.timeline.el);
+
+    return this;
+  }
 });
 
 var TimelineView = Backbone.View.extend({
@@ -61,7 +83,9 @@ var TimelineView = Backbone.View.extend({
 
   render: function() {
     console.log('called render');
-    this.$el.html(this.template({tweets: this.collection.toJSON()}));
+    this.$el.html(this.template(
+      {tweets: this.collection.toJSON()})
+  );
     return this;
   }
 });
@@ -103,23 +127,6 @@ var RegisterView = Backbone.View.extend({
   }
 });
 
-var ProfileView = Backbone.View.extend({
-
-  events: {
-    'click input': 'handleClick'
-  },
-
-  handleClick: function(){
-    console.log("clicked on Profile")
-  },
-
-  render: function(){
-    console.log("rendered")
-    var template = _.template($('#profileTemplate').html());
-    this.$el.html(template);
-    return this;
-  }
-});
 
 // *** ROUTER ***
 
