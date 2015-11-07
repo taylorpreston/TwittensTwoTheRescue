@@ -67,7 +67,10 @@ var HomeView = Backbone.View.extend({
 var TimelineView = Backbone.View.extend({
   template: _.template($('#timelineTemplate').html()),
   events: {
-    'click input': 'handleClick'
+    'click input'   : 'handleClick',
+    'click textarea': 'handleClick',
+    'click a'       : 'handleClick',
+    'click button'       : 'handleClick'
   },
 
   initialize: function() {
