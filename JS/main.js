@@ -1,10 +1,15 @@
 // *** Models ***
 var TwitModel = Backbone.Model.extend({
    url: 'https://twitter-clone-api.herokuapp.com/tweets',
-
 });
 
+
+
 // *** Collections ***
+var User = Backbone.Collection.extend({
+  url: 'https://twitter-clone-api.herokuapp.com/users',
+});
+
 var PublicCollection = Backbone.Collection.extend({
   url: 'https://twitter-clone-api.herokuapp.com/tweets'
 });
@@ -23,7 +28,6 @@ var TwitView = Backbone.View.extend({
     //  var time = moment(tweets.updated_at).format('ll');
      var html = $('#TwitTemplate').html();
      this.$el.html(html);
-
      return this;
   }
 });
@@ -88,42 +92,99 @@ var TimelineView = Backbone.View.extend({
   }
 });
 
-var LoginView = Backbone.View.extend({
-  className: 'page login',
-  tagName: 'section',
-  events: {
-    'click input': 'handleClick'
-  },
-
-  handleClick: function(){
-    console.log("clicked on Timeline")
-  },
-
-  render: function(){
-    console.log("rendered")
-    var template = _.template($('#loginTemplate').html());
-    this.$el.html(template);
-    return this;
-  }
-});
+// var LoginView = Backbone.View.extend({
+//   className: 'page login',
+//   template: _.template($('#loginTemplate').html()),
+//
+//
+//   events: {
+//     'click .loginButton': 'handleLoginClick'
+//   },
+//
+//
+//   send: function(){
+//     var login = this.$('.loginButton').val();
+//     var email = this.$(".email").val();
+//     var password = this.$(".password").val();
+//     var confirmedPassword = this.$(".confPassword").val();
+//
+//     if (email.trim() === '') {
+//       alert('Please insert an email.');
+//       return;
+//     }
+//
+//     if (password.trim() === '') {
+//       alert('Please enter password.');
+//       return;
+//     }
+//
+//     if (confirmedPassword.trim() === '') {
+//       alert('Please confirm your password.');
+//       return;
+//     }
+//
+//     **** log user ***
+//
+//   render: function(){
+//     console.log("Login Page has rendered")
+//     this.$el.html(this.template());
+//   },
+//
+//   handlerLoginClick: function(event){
+//     event.preventDefault();
+//     this.send();
+//     console.log("A User has clicked Join.");
+//   }
+// });
 
 var RegisterView = Backbone.View.extend({
   className: 'page register',
-  tagName:   'section',
+  template: _.template($('#registerTemplate').html()),
 
   events: {
-    'click input': 'handleClick'
+    'click .registerButton': 'handlerRegisterClick'
   },
 
-  handleClick: function(){
-    console.log("clicked on Register")
+  send: function(){
+    var register = this.$('.registerButton').val();
+    var email = this.$(".email").val();
+    var password = this.$(".password").val();
+    var confirmedPassword = this.$(".confPassword").val();
+
+    if (email.trim() === '') {
+      alert('Please insert an email.');
+      return;
+    }
+
+    if (password.trim() === '') {
+      alert('Please enter password.');
+      return;
+    }
+
+    if (confirmedPassword.trim() === '') {
+      alert('Please confirm your password.');
+      return;
+    }
+
+    var newUser = new User({
+      user: {
+       email: email,
+       password: password,
+      }
+    })
+    console.log(newUser)
+    newUser.create();
   },
 
   render: function(){
-    console.log("rendered")
-    var template = _.template($('#registerTemplate').html());
-    this.$el.html(template);
-    return this;
+    console.log("Register Page has rendered")
+    this.$el.html(this.template());
+  },
+
+  handlerRegisterClick: function(event){
+    event.preventDefault();
+    this.send();
+    console.log("A User has clicked Join.");
   }
 });
 
@@ -163,15 +224,15 @@ var TwitRouter = Backbone.Router.extend({
     $('main').html(view.render().el);
   },
   LoginRoute: function(){
-    $('main').html('');
-    view = new LoginView()
-    $('main').append(view.render().el);
-  },
+    var view = new LoginView();
+    view.render();
+    $('main').html(view.$el);
+    },
   RegisterRoute  : function(){
-    $('main').html('');
-    view = new RegisterView()
-    $('main').append(view.render().el);
-  },
+    var view = new RegisterView();
+    view.render();
+    $('main').html(view.$el);
+    },
   DashboardRoute  : function(){
     $('main').html('');
     view = new TimelineView(),
