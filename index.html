@@ -40,8 +40,7 @@
       <p><%= message %></p>
       <input type="button" name="postButton" value="Post">
     </div>
-=======
-<!-- YO! I (lindsey) changed the input on line 41 to a button because I needed a non self-closing element so I could use the icon span. I'd like to change the others too, holler if that's a problem! -->
+<! YO! I (lindsey) changed the input on line 41 to a button because I needed a non self-closing element so I could use the icon span. I'd like to change the others too, holler if that's a problem! -->
 
   <script type="text/template" id="twitTemplate">
     <h2><%= name %></h2>
@@ -49,9 +48,9 @@
   </script>
 
   <script type="text/template" id="timelineTemplate">
-    <input type="text" class="name"/>
-    <input type="text" class="msg"/>
-    <button type="submit" name="name"><span class="icon-pen"></span>Click Me</button>
+    <input type="text" class="name" placeholder="Username..."/>
+    <input type="text" class="msg" placeholder="Message"/>
+    <button type="submit" name="name"><span class="icon-pen"></span>Send Tweet</button>
     <% _.forEach(tweets, function(tweet){ %>
       <div class="tweet">
         <h2><%= tweet.user.email %></h2>
@@ -115,6 +114,12 @@
 
 
   <script type="text/template" id="homeTemplate">
+<<<<<<< HEAD
+=======
+    <section class="timeline"></section>
+
+
+>>>>>>> 3d48cc66c436785c2c0f6fedb2ba6af36465faf1
     <h1>Twittar</h1>
     <section class="timeline"></section>
   </script>
