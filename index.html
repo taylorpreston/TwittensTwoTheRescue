@@ -49,13 +49,11 @@
   </script>
 
   <script type="text/template" id="timelineTemplate">
-    <h1>TIMELINE</h1>
     <input type="text" class="name"/>
     <input type="text" class="msg"/>
     <input type="button" class="send" value="Send"/>
     <input type="button" name="name" value="click me">
 
-    <h2>TIMELINE</h2>
     <button type="submit" name="name"><span class="icon-pen"></span>Click Me</button>
     <% _.forEach(tweets, function(tweet){ %>
       <div class="tweet">
@@ -120,11 +118,6 @@
 
 
   <script type="text/template" id="homeTemplate">
-    <h2>Home Page</h2>
-    <hr>
-    <section class="timeline"></section>
-
-
     <h1>Twittar</h1>
     <section class="timeline"></section>
   </script>
