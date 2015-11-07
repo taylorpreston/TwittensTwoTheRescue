@@ -57,10 +57,10 @@
   <script type="text/template" id="loginTemplate">
     <h1>Login</h1>
     <div class="loginWrap">
-      <input type="text" name="name" value="" placeholder="E-Mail...">
-      <input type="password" name="name" value="" placeholder="Password:" display="none">
-      <input type="password" name="name" value="" placeholder="Conf. Password:">
-      <input type="button" name="loginButton" value="Login">
+      <input type="text" class="email" value="" placeholder="E-Mail...">
+      <input type="password" class="password" value="" placeholder="Password:" display="none">
+      <input type="password" class="confPassword" value="" placeholder="Conf. Password:">
+      <input type="button" class="loginButton" value="Login">
       <span>Or...<a href="#register">Register Here</a></span>
     </div>
   </script>
@@ -68,18 +68,12 @@
   <script type="text/template" id="registerTemplate">
     <h1>Register for twittar.</h1>
     <div class="registerWrap">
-      <input type="text" name="name" value="" placeholder="E-Mail...">
-      <input type="text" name="name" value="" placeholder="Password:">
-      <input type="text" name="name" value="" placeholder="Conf. Password:">
-      <input type="button" name="name" value="Join">
+      <input type="email" class="email" value="" placeholder="E-Mail...">
+      <input type="password" class="password" value="" placeholder="Password:">
+      <input type="password" class="confPassword" value="" placeholder="Conf. Password:">
+      <input type="button" class="registerButton" value="Join">
     <span>Or...<a href="#login">Login Here</a></span>
   </div>
-
-  <script type="text/template" id="dashboardTemplate">
-    <h1>DASHBOARD</h1>
-      <input type="button" name="name" value="click me">
-      <section class="timeline">HEY GUYS</section>
-  </script>
 
   <script type="text/template" id="profileTemplate">
     <img src="" alt="twitpic" />
@@ -88,6 +82,10 @@
     <input type="text" name="name" value="" placeholder="username">
     <section class="timeline"></section>
 
+  <script type="text/template" id="dashboardTemplate">
+    <h2>DASHBOARD</h2>
+    <input type="button" name="name" value="click me">
+    <section class="timeline"></section>
   </script>
 
 -  <script type="text/template" id="usersTemplate">

@@ -21,7 +21,9 @@ var PublicCollection = Backbone.Collection.extend({
   url: 'https://twitter-clone-api.herokuapp.com/tweets'
 });
 
-var FollowingCollection = Backbone.Collection.extend({
+var UsersCollection = Backbone.Collection.extend({
+  url: 'https://twitter-clone-api.herokuapp.com/users',
+  model: UserModel
 });
 
 
