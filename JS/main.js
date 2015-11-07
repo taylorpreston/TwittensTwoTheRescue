@@ -1,8 +1,8 @@
 // *** Models ***
-// var TwitModel = Backbone.Model.extend({
-//    url: 'https://tiny-starburst.herokuapp.com/collections/chat',
-//
-// });
+var TwitModel = Backbone.Model.extend({
+   url: 'https://twitter-clone-api.herokuapp.com/tweets',
+
+});
 
 // *** Collections ***
 var PublicCollection = Backbone.Collection.extend({
@@ -20,6 +20,7 @@ var TwitView = Backbone.View.extend({
 
    render: function(){
      console.log("twittins")
+    //  var time = moment(tweets.updated_at).format('ll');
      var html = $('#TwitTemplate').html();
      this.$el.html(html);
 
