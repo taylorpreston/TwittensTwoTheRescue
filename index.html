@@ -43,8 +43,9 @@
 <! YO! I (lindsey) changed the input on line 41 to a button because I needed a non self-closing element so I could use the icon span. I'd like to change the others too, holler if that's a problem! -->
 
   <script type="text/template" id="twitTemplate">
-    <h2><%= name %></h2>
+    <h2><a href"#user"><%= name %></a></h2>
     <p><%= message %></p>
+    <time><%= created %></time>
   </script>
 
   <script type="text/template" id="timelineTemplate">
@@ -55,7 +56,7 @@
     </div>
     <% _.forEach(tweets, function(tweet){ %>
       <div class="tweet">
-        <h2><%= tweet.user.email %></h2>
+        <h2><a href=""><%= tweet.user.email %></a></h2>
         <p><%= tweet.body %></p>
       </div>
     <% }) %>
