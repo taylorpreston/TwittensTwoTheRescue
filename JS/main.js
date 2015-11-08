@@ -3,10 +3,14 @@ var TwitModel = Backbone.Model.extend({
    url: 'https://twitter-clone-api.herokuapp.com/tweets',
 });
 
+var UserModel = Backbone.Model.extend({
+   url: 'https://twitter-clone-api.herokuapp.com/users',
+});
 
 
 // *** Collections ***
-var User = Backbone.Collection.extend({
+var UsersCollection = Backbone.Collection.extend({
+  model: UserModel,
   url: 'https://twitter-clone-api.herokuapp.com/users',
 });
 
@@ -92,57 +96,31 @@ var TimelineView = Backbone.View.extend({
   }
 });
 
-// var LoginView = Backbone.View.extend({
-//   className: 'page login',
-//   template: _.template($('#loginTemplate').html()),
-//
-//
-//   events: {
-//     'click .loginButton': 'handleLoginClick'
-//   },
-//
-//
-//   send: function(){
-//     var login = this.$('.loginButton').val();
-//     var email = this.$(".email").val();
-//     var password = this.$(".password").val();
-//     var confirmedPassword = this.$(".confPassword").val();
-//
-//     if (email.trim() === '') {
-//       alert('Please insert an email.');
-//       return;
-//     }
-//
-//     if (password.trim() === '') {
-//       alert('Please enter password.');
-//       return;
-//     }
-//
-//     if (confirmedPassword.trim() === '') {
-//       alert('Please confirm your password.');
-//       return;
-//     }
-//
-//     **** log user ***
-//
-//   render: function(){
-//     console.log("Login Page has rendered")
-//     this.$el.html(this.template());
-//   },
-//
-//   handlerLoginClick: function(event){
-//     event.preventDefault();
-//     this.send();
-//     console.log("A User has clicked Join.");
-//   }
-// });
+var LoginView = Backbone.View.extend({
+  className: 'page login',
+  tagName: 'section',
+  events: {
+    'click input': 'handleClick'
+  },
+
+  handleClick: function(){
+    console.log("clicked on Timeline")
+  },
+
+  render: function(){
+    console.log("rendered")
+    var template = _.template($('#loginTemplate').html());
+    this.$el.html(template);
+    return this;
+  }
+});
 
 var RegisterView = Backbone.View.extend({
   className: 'page register',
   template: _.template($('#registerTemplate').html()),
 
   events: {
-    'click .registerButton': 'handlerRegisterClick'
+    'click .registerButton': 'handleRegisterClick'
   },
 
   send: function(){
@@ -150,6 +128,7 @@ var RegisterView = Backbone.View.extend({
     var email = this.$(".email").val();
     var password = this.$(".password").val();
     var confirmedPassword = this.$(".confPassword").val();
+
 
     if (email.trim() === '') {
       alert('Please insert an email.');
@@ -166,14 +145,11 @@ var RegisterView = Backbone.View.extend({
       return;
     }
 
-    var newUser = new User({
-      user: {
-       email: email,
-       password: password,
-      }
+    var newUser = new UserModel({
+        email: email,
+        password: password,
     })
-    console.log(newUser)
-    newUser.create();
+    newUser.create({email:'' ,password : ''});
   },
 
   render: function(){
@@ -181,7 +157,7 @@ var RegisterView = Backbone.View.extend({
     this.$el.html(this.template());
   },
 
-  handlerRegisterClick: function(event){
+  handleRegisterClick: function(event){
     event.preventDefault();
     this.send();
     console.log("A User has clicked Join.");
