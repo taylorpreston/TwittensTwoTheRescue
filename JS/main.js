@@ -108,50 +108,54 @@ var TimelineView = Backbone.View.extend({
   }
 });
 
-// var LoginView = Backbone.View.extend({
-//   className: 'page login',
-//   template: _.template($('#loginTemplate').html()),
-//
-//
-//   events: {
-//     'click .loginButton': 'handleLoginClick'
-//   },
-//
-//
-//   send: function(){
-//     var login = this.$('.loginButton').val();
-//     var email = this.$(".email").val();
-//     var password = this.$(".password").val();
-//     var confirmedPassword = this.$(".confPassword").val();
-//
-//     if (email.trim() === '') {
-//       alert('Please insert an email.');
-//       return;
-//     }
-//
-//     if (password.trim() === '') {
-//       alert('Please enter password.');
-//       return;
-//     }
-//
-//     if (confirmedPassword.trim() === '') {
-//       alert('Please confirm your password.');
-//       return;
-//     }
-//
-//     **** log user ***
-//
-//   render: function(){
-//     console.log("Login Page has rendered")
-//     this.$el.html(this.template());
-//   },
-//
-//   handlerLoginClick: function(event){
-//     event.preventDefault();
-//     this.send();
-//     console.log("A User has clicked Join.");
-//   }
-// });
+var LoginView = Backbone.View.extend({
+  className: 'page login',
+  template: _.template($('#loginTemplate').html()),
+  collection: new UsersCollection,
+
+
+  events: {
+    'click .loginButton': 'handleLoginClick'
+  },
+
+
+  send: function(){
+    var login = this.$('.loginButton').val();
+    var email = this.$(".email").val();
+    var password = this.$(".password").val();
+    // var confirmedPassword = this.$(".confPassword").val();
+    var collection = new UsersCollection();
+    var model = new UserModel();
+    // *** If Inputs Need To Be Filled ***
+    if (email.trim() === '') {
+      alert('Please insert an email.');
+      return;
+    }
+
+    if (password.trim() === '') {
+      alert('Please enter password.');
+      return;
+    }
+
+    collection.fetch(console.log("FETCHED USERS"))
+
+
+    console.log(email)
+  },
+    // **** log user ***
+
+    handleLoginClick: function(event){
+      event.preventDefault();
+      this.send();
+      console.log("A User has clicked Join.");
+    },
+
+    render: function(){
+      console.log("Login Page has rendered")
+      this.$el.html(this.template());
+      return this;
+    }
+});
 
 var RegisterView = Backbone.View.extend({
  className: 'page register',
@@ -166,7 +170,7 @@ var RegisterView = Backbone.View.extend({
    var register = this.$('.registerButton').val();
    var email = this.$(".email").val();
    var password = this.$(".password").val();
-   var confirmedPassword = this.$(".confPassword").val();
+  //  var confirmedPassword = this.$(".confPassword").val();
    var collection = new UsersCollection()
    var newUser = new UserModel()
    if (email.trim() === '') {
@@ -184,18 +188,21 @@ var RegisterView = Backbone.View.extend({
      return;
    }
 
+
+  collection.fetch(console.log("FETCHED USERS"))
+
   console.log(email)
   collection.create({"user":{"email": email,
                       "password": password
                     }})
 
-   collection.fetch(console.log("FETCHED USERS"))
-   console.log(collection.fetch()),
-   console.log(collection.fetch().then(function(users){
-     console.log(users.forEach(function(user){
-       console.log(user.email);
-     }))
-   }))
+
+  //  console.log(collection.fetch()),
+  //  console.log(collection.fetch().then(function(users){
+  //    console.log(users.forEach(function(user){
+  //      console.log(user.email);
+  //    }))
+  //  }))
 
  },
 
@@ -210,8 +217,7 @@ var RegisterView = Backbone.View.extend({
    console.log("Register Page has rendered")
    this.$el.html(this.template());
    return this;
-
- },
+  }
 });
 
 var ProfileView = Backbone.View.extend({
