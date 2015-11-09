@@ -7,12 +7,16 @@ var TwitModel = Backbone.Model.extend({
 
 var UserModel = Backbone.Model.extend({
   url: 'https://twitter-clone-api.herokuapp.com/users/:id',
-  default:{ user:{
-    email: this.email,
-    password: this.password,
-    }
-  }
+  // default:{ user:{
+  //   email: this.email,
+  //   password: this.password,
+  //   }
+  // }
 })
+
+var UserToken = Backbone.Model.extend({
+  url: "https://twitterapii.herokuapp.com/users"
+});
 
 // *** Collections ***
 var PublicCollection = Backbone.Collection.extend({
@@ -21,11 +25,18 @@ var PublicCollection = Backbone.Collection.extend({
 
 var UsersCollection = Backbone.Collection.extend({
   url: 'https://twitter-clone-api.herokuapp.com/users',
-
-  parse: function(data) {
-   return data
+  parse: function(data){
+  return data
  }
 });
+
+var GetTokens = Backbone.Collection.extend({
+  model: UserModel,
+  url: 'https://twitter-clone-api.herokuapp.com/oauth/token',
+  parse: function(data){
+    return data
+  }
+})
 
 
 // *** VIEWS ***
@@ -108,6 +119,7 @@ var TimelineView = Backbone.View.extend({
   }
 });
 
+// <<<<<<< HEAD
 var LoginView = Backbone.View.extend({
   className: 'page login',
   template: _.template($('#loginTemplate').html()),
@@ -126,22 +138,40 @@ var LoginView = Backbone.View.extend({
     // var confirmedPassword = this.$(".confPassword").val();
     var collection = new UsersCollection();
     var model = new UserModel();
+    var tokenCollection = new GetTokens()
+
     // *** If Inputs Need To Be Filled ***
     if (email.trim() === '') {
       alert('Please insert an email.');
       return;
     }
-
-    if (password.trim() === '') {
+    else if (password.trim() === '') {
       alert('Please enter password.');
       return;
     }
+    else {
+    // console.log(tokenCollection)
+    tokenCollection.create({
+      "grant_type": "password",
+         "username": email,
+         "password": password
+    },
 
-    collection.fetch(console.log("FETCHED USERS"))
+    console.log(tokenCollection.fetch()),
+    // console.log(tokenCollection.fetch().then(function(users){
+    //   console.log(users.forEach(function(user){
+    //     console.log(user.email);
+    //   }))
+    // }))
 
+    // console.log(tokenCollection.create()),
+    // console.log(tokenCollection.model),
+    {success: function() {
+        return model
+       }})
+      }
+    },
 
-    console.log(email)
-  },
     // **** log user ***
 
     handleLoginClick: function(event){
@@ -157,6 +187,71 @@ var LoginView = Backbone.View.extend({
     }
 });
 
+
+
+// ^^^^^^^^ ********* LOG IN ********vvvvvvvvv
+
+
+// =======
+// >>>>>>> 39c936a9f0350fe907a2aa5e593115660abd89bf
+//
+/// CURRENTLY WORKING  LOGIN VIEW ///
+// var LoginView = Backbone.View.extend({
+//   className: 'page login',
+//   template : _.template($('#loginTemplate').html()),
+//
+//   events: {
+//     'click .loginButton': 'handlerLoginClick'
+//   },
+//
+// //// API needs a post request to grant token, give that the credentials are correct//
+//   send: function(){
+//     var login = this.$('.loginButton').val();
+//     var url = 'https://twitter-clone-api.herokuapp.com/oauth/token';
+//       console.log('access')
+//     var email = this.$(".email").val();
+//     var password = this.$(".password").val();
+//     var formValues = {
+//       email: email,
+//       password: password
+//     };
+//     var foo = $.ajax({
+//         url     :url,
+//         type    :'POST',
+//         dataType:"json",
+//         data    : formValues,
+//         success :function (data) {
+//             console.log(["added", data]);
+//         }
+//     });
+//     console.log(formValues)
+//     console.log(foo)
+//
+//     //
+//     // GetTokens.fetch ({
+//     //   "grant_type": "password",
+//     //   "email": "email",
+//     //   "password": "password"
+//     // });
+//  },
+// /// GETTING 401 ERROR //
+//   handlerLoginClick: function(event){
+//    event.preventDefault();
+//    this.send();
+//    console.log("A User has clicked Join.");
+//  },
+//
+//
+//   render: function(){
+//   console.log("Login Page has rendered")
+//   this.$el.html(this.template());
+//   return this;
+//   },
+// });
+/// END CURRENTLY WORKING  LOGIN VIEW ///
+
+
+// ALMOST FINISHED  REGISTER VIEW//
 var RegisterView = Backbone.View.extend({
  className: 'page register',
  template: _.template($('#registerTemplate').html()),
@@ -170,9 +265,10 @@ var RegisterView = Backbone.View.extend({
    var register = this.$('.registerButton').val();
    var email = this.$(".email").val();
    var password = this.$(".password").val();
-  //  var confirmedPassword = this.$(".confPassword").val();
+   var confirmedPassword = this.$(".confPassword").val();
    var collection = new UsersCollection()
    var newUser = new UserModel()
+
    if (email.trim() === '') {
      alert('Please insert an email.');
      return;
@@ -188,6 +284,7 @@ var RegisterView = Backbone.View.extend({
      return;
    }
 
+// <<<<<<< HEAD
 
   collection.fetch(console.log("FETCHED USERS"))
 
@@ -197,15 +294,13 @@ var RegisterView = Backbone.View.extend({
                     }})
 
 
-  //  console.log(collection.fetch()),
-  //  console.log(collection.fetch().then(function(users){
-  //    console.log(users.forEach(function(user){
-  //      console.log(user.email);
-  //    }))
-  //  }))
-
+   console.log(collection.fetch()),
+   console.log(collection.fetch().then(function(users){
+     console.log(users.forEach(function(user){
+       console.log(user.email);
+     }))
+   }))
  },
-
 
   handlerRegisterClick: function(event){
     event.preventDefault();
@@ -213,12 +308,15 @@ var RegisterView = Backbone.View.extend({
     console.log("A User has clicked Join.");
   },
 
+
  render: function(){
    console.log("Register Page has rendered")
    this.$el.html(this.template());
    return this;
   }
-});
+ });
+// END ALMOST FINISHED  REGISTER VIEW//
+
 
 var ProfileView = Backbone.View.extend({
   className: "profilePage",
